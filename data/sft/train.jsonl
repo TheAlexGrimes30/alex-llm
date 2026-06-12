@@ -1,0 +1,4 @@
+{"messages":[{"role":"user","content":"Какие цвета есть у радуги?"},{"role":"assistant","content":"Красный, оранжевый, желтый, зеленый, голубой, синий и фиолетовый."}]}
+{"messages":[{"role":"user","content":"Что такое Docker?"},{"role":"assistant","content":"Docker — это платформа контейнеризации приложений."}]}
+{"messages":[{"role":"user","content":"Что такое FastAPI?"},{"role":"assistant","content":"FastAPI — современный веб-фреймворк для Python."}]}
+{"messages":[{"role":"user","content":"Что такое PostgreSQL?"},{"role":"assistant","content":"PostgreSQL — объектно-реляционная система управления базами данных."}]}

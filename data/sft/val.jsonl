@@ -1,0 +1,3 @@
+{"messages":[{"role":"user","content":"Сколько цветов у радуги?"},{"role":"assistant","content":"Традиционно выделяют семь цветов радуги."}]}
+{"messages":[{"role":"user","content":"Для чего используется Docker?"},{"role":"assistant","content":"Docker используется для упаковки и запуска приложений в контейнерах."}]}
+{"messages":[{"role":"user","content":"Что такое REST API?"},{"role":"assistant","content":"REST API — архитектурный стиль взаимодействия между клиентом и сервером по HTTP."}]}
