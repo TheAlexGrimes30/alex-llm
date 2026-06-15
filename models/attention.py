@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 class MultiHeadAttention(nn.Module):
@@ -28,8 +27,6 @@ class MultiHeadAttention(nn.Module):
         self.k_proj = nn.Linear(d_model, d_model, bias=False)
         self.v_proj = nn.Linear(d_model, d_model, bias=False)
         self.o_proj = nn.Linear(d_model, d_model, bias=False)
-
-        self.attn_dropout = nn.Dropout(dropout)
 
         self.k_cache = None
         self.v_cache = None
@@ -91,14 +88,13 @@ class MultiHeadAttention(nn.Module):
             k = self.k_cache
             v = self.v_cache
 
-        out = F.scaled_dot_product_attention(
+        out = flash_attention(
             q,
             k,
             v,
-            is_causal=True,
             dropout_p=self.dropout if self.training else 0.0,
+            is_causal=True,
         )
 
         out = self._merge(out)
         return self.o_proj(out)
-    
