@@ -20,7 +20,6 @@ class LLMTokenizer:
         self.bos_token_id = self.tokenizer.token_to_id("<bos>")
         self.eos_token_id = self.tokenizer.token_to_id("<eos>")
 
-        # fallback safety
         for name, tid in [
             ("<pad>", self.pad_token_id),
             ("<unk>", self.unk_token_id),
