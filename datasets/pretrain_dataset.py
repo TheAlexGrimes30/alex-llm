@@ -38,10 +38,10 @@ class PretrainDataset:
 
         return texts
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.samples)
 
-    def __getitem__(self, idx: int):
+    def __getitem__(self, idx: int) -> dict[str, int]:
         text = self.samples[idx]
         tokens = self.tokenizer.encode(text, add_special_tokens=True)
         tokens = tokens[: self.max_length]

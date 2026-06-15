@@ -35,13 +35,14 @@ class SFTDataset:
 
         return samples
 
-    def __len__(self):
-        return len(self.samples)
-
     def _format_prompt(self, instruction: str) -> str:
         return f"<user>\n{instruction}\n<assistant>\n"
 
-    def __getitem__(self, idx: int):
+
+    def __len__(self) -> int:
+        return len(self.samples)
+
+    def __getitem__(self, idx: int) -> dict[str, int]:
         sample = self.samples[idx]
 
         instruction = sample["instruction"]
