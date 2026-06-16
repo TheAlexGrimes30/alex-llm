@@ -34,4 +34,3 @@ class SwiGLU(nn.Module):
         hidden = F.silu(gate) * up
 
         return self.w2(hidden)
-    
