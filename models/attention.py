@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 
+from models.flash_attention import flash_attention
+
 
 class MultiHeadAttention(nn.Module):
     """

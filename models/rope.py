@@ -1,14 +1,15 @@
 import torch
 import torch.nn as nn
+from torch import Tensor
+
 
 def rotate_half(x: torch.Tensor) -> torch.Tensor:
     """
     Разделяет последний dim на 2 части и меняет их местами с поворотом.
     """
 
-    x1 = x[..., ::2]
-    x2 = x[..., 1::2]
-    return torch.stack((-x2, x1), dim=-1).flatten(-2)
+    x1, x2 = x.chunk(2, dim=-1)
+    return torch.cat((-x2, x1), dim=-1)
 
 class RotaryEmbedding(nn.Module):
     """
@@ -25,15 +26,13 @@ class RotaryEmbedding(nn.Module):
         if dim % 2 != 0:
             raise ValueError("RoPE dim must be even")
 
-        self.dim = dim
-
         inv_freq = 1.0 / (
                 base ** (torch.arange(0, dim, 2).float() / dim)
         )
 
         self.register_buffer("inv_freq", inv_freq, persistent=False)
 
-    def forward(self, seq_len: int, device: torch.Device = None):
+    def forward(self, seq_len: int, device: torch.Device = None) -> tuple[Tensor, Tensor]:
         """
         Генерирует cos/sin для всех позиций
         """
@@ -42,6 +41,7 @@ class RotaryEmbedding(nn.Module):
             device = self.inv_freq.device
 
         t = torch.arange(seq_len, device=device).float()
+
         freqs = torch.einsum("i,j->ij", t, self.inv_freq)
 
         cos = freqs.cos()
@@ -50,6 +50,7 @@ class RotaryEmbedding(nn.Module):
         return cos, sin
 
     def apply_rope(
+            self,
             x: torch.Tensor,
             cos: torch.Tensor,
             sin: torch.Tensor,

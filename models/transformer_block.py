@@ -94,4 +94,3 @@ class TransformerBlock(nn.Module):
         x = residual + x
 
         return x, router_logits
-    
