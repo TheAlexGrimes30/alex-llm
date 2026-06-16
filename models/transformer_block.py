@@ -10,7 +10,7 @@ from models.swiglu import SwiGLU
 
 class TransformerBlock(nn.Module):
     """
-    Pre-Norm Transformer Block (LLM-style)
+    Transformer Block
     """
 
     def __init__(
