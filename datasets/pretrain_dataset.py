@@ -6,8 +6,8 @@ from tokenizers import Tokenizer
 
 class PretrainDataset:
     """
-    Dataset для pretraining (causal LM)
-    Формат: просто текст → токены
+    Dataset для pretraining
+    Формат: текст → токены
     """
 
     def __init__(
