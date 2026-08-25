@@ -2,25 +2,56 @@ import json
 from pathlib import Path
 
 from tokenizers import Tokenizer
+from torch.utils.data import Dataset
 
 
-class PretrainDataset:
+class PretrainDataset(Dataset):
     """
-    Dataset для pretraining
-    Формат: текст → токены
+    Dataset для causal language model pretraining.
+
+    Pipeline:
+
+        .txt / .jsonl
+            ↓
+        documents
+            ↓
+        tokenizer
+            ↓
+        [tokens_doc_1] + EOS
+        [tokens_doc_2] + EOS
+            ↓
+        единый поток токенов
+            ↓
+        разбиение на последовательности max_length
+            ↓
+        input_ids / labels
     """
 
     def __init__(
             self,
-            data_dir: str,
+            data_dir: str | Path,
             tokenizer: Tokenizer,
-            max_length: int = 2048
+            context_length: int = 2048,
+            eos_token: str = "<eos>",
+            bos_token: str = "<bos>",
     ):
+
+        super().__init__()
 
         self.data_dir = Path(data_dir)
         self.tokenizer = tokenizer
-        self.max_length = max_length
-        self.samples = self._load_data()
+
+        self.context_length = context_length
+
+        if context_length <= 1:
+            raise ValueError(
+                "max_length должен быть больше 1."
+            )
+
+        if not self.data_dir.exists():
+            raise FileNotFoundError(
+                f"Директория не существует: {self.data_dir}"
+            )
 
     def _load_data(self) -> list[str]:
         texts = []
