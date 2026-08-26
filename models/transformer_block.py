@@ -5,7 +5,7 @@ from models.attention import MultiHeadAttention
 from models.moe import MoE
 from models.rmsnorm import RMSNorm
 from models.rope import RotaryEmbedding
-from models.swiglu import SwiGLU
+from models.activation_functions.swiglu import SwiGLU
 
 
 class TransformerBlock(nn.Module):
