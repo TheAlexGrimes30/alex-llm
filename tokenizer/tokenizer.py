@@ -74,10 +74,10 @@ class LLMTokenizer:
 
         return self.encode(text)
 
-    def token_to_id(self, token: str):
+    def token_to_id(self, token: str) -> int:
         return self.tokenizer.token_to_id(token)
 
-    def id_to_token(self, token_id: int):
+    def id_to_token(self, token_id: int) -> str:
         return self.tokenizer.id_to_token(token_id)
 
 

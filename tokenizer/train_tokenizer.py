@@ -7,7 +7,7 @@ from tokenizers.pre_tokenizers import ByteLevel
 from tokenizers.normalizers import NFKC, Sequence
 from tokenizers.decoders import ByteLevel as ByteLevelDecoder
 
-VOCAB_SIZE = 32000
+VOCAB_SIZE = 16000
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 PRETRAIN_DIR = ROOT_DIR / "data" / "pretrain"
@@ -33,7 +33,7 @@ def collect_training_files() -> list[str]:
     return [str(f) for f in files]
 
 
-def train_tokenizer():
+def train_tokenizer() -> None:
     files = collect_training_files()
 
     if not files:
