@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class FlashAttention(nn.Module):
+class SDPAttention(nn.Module):
     """
     Wrapper over PyTorch SDPA (FlashAttention backend)
     """

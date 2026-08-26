@@ -119,7 +119,7 @@ class RotaryEmbedding(nn.Module):
             device=x.device,
             dtype=x.dtype,
         )
-        
+
         sin = sin[:seq_len].to(
             device=x.device,
             dtype=x.dtype,
