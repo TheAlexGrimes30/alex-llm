@@ -19,10 +19,7 @@ class TokenEmbedding(nn.Module):
             d_model,
         )
 
-    def forward(
-            self,
-            input_ids: torch.Tensor,
-    ) -> torch.Tensor:
+    def forward(self, input_ids: torch.Tensor) -> torch.Tensor:
         return self.weight(input_ids)
 
     @property
