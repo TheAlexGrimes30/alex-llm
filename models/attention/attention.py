@@ -3,7 +3,7 @@ from typing import TypeAlias
 import torch
 import torch.nn as nn
 
-from models.flash_attention import SDPAttention
+from models.attention.flash_attention import SDPAttention
 
 KVCache: TypeAlias = tuple[torch.Tensor, torch.Tensor]
 
