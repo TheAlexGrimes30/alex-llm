@@ -1,10 +1,10 @@
 import torch
 import torch.nn as nn
 
-from models.attention import MultiHeadAttention
+from models.attention.attention import MultiHeadAttention
 from models.moe import MoE
 from models.rmsnorm import RMSNorm
-from models.rope import RotaryEmbedding
+from models.attention.rope import RotaryEmbedding
 from models.activation_functions.swiglu import SwiGLU
 
 
